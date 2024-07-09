@@ -1,0 +1,35 @@
+type Product {
+    productId: ID
+    quantity: Int
+}
+
+type Order {
+    id: ID
+    userId: Int
+    date: String
+    products: [Product]
+}
+
+type Cart {
+    _id: ID
+    userId: Int
+    date: String
+    products: [Product]
+}
+
+type Query {
+    getAllOrders: [Order]
+    getOrderById(id: ID!): Order
+    getAllCarts: [Cart]
+}
+
+type Mutation {
+    createOrder(userId: Int, date: String, products: [ProductInput]): Order
+    updateOrder(id: ID, userId: Int, date: String, products: [ProductInput]): Order
+    deleteOrder(id: ID): Order
+}
+
+input ProductInput {
+    productId: ID
+    quantity: Int
+}
